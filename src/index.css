@@ -1,0 +1,11 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  font-family: 'Pretendard', sans-serif;
+}
+
+.chat-bubble {
+  white-space: pre-line; /* \n 을 줄바꿈으로 렌더링 */
+}
