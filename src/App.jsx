@@ -1,13 +1,15 @@
 import React, { useState } from "react";
 import axios from "axios";
 import "./App.css";
-import bgImage from "./assets/wow_bg.png"; // ← 네가 올린 배경 이미지 경로
+//import bgImage from "./assets/wow_bg_쓰랄.png"; // ← 네가 올린 배경 이미지 경로
+import bgImage from "./assets/wow_bg_마나스톰.png"; // ← 네가 올린 배경 이미지 경로
 
 function App() {
   const [messages, setMessages] = useState([
     //{ sender: "npc", text: "Setting : Model = Llama-3.2-3B\nRank = 4, Alpha = 4 " },
-    { sender: "npc", text: "Setting : Model = Llama-3.2-1B\nLoRA, Rank = 4, Alpha = 4 " },
-    { sender: "npc", text: "Thrall : " + "둠해머를 위하여! 오크의 땅까지 찾아오다니 대단하군. 여행자여 무슨일인가?" },
+    { sender: "npc", text: "Setting : Model = Llama-3.2-1B\nLoRA, Rank = 2, Alpha = 2\nVRAM 사용 : 4737" },
+    //{ sender: "npc", text: "Setting : Model = Llama-3.2-3B\nQLoRA, Rank = 32, Alpha = 64\nVRAM 사용 : 3117" },
+    { sender: "npc", text: "마나스톰 : " + "이 위대한 존재를 찾아온 용기를 칭찬해주지! 무슨 일이냐!" },
   ]);
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
@@ -21,11 +23,13 @@ function App() {
 
     try {
       // 백엔드 API 호출
-      const res = await axios.post("http://121.190.27.83:58900/api/infer", {
+      //const res = await axios.post("http://121.190.27.83:58900/api/infer", {
+      const res = await axios.post("http://localhost:8000/api/infer", {        
         input: input,
       });
 
-      const botMsg = { sender: "bot", text: "Thrall : " + res.data.answer };
+      //const botMsg = { sender: "bot", text: "Thrall : " + res.data.answer };
+      const botMsg = { sender: "bot", text: "마나스톰 : " + res.data.answer };
       setMessages((prev) => [...prev, botMsg]);
     } catch (err) {
       console.error(err);
